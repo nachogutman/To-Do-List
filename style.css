@@ -21,8 +21,8 @@ html {
 .tarea {
   display: flex;
   color: aliceblue;
-  font-size: 30px;
-  margin-bottom: -10%;
+  font-size: 15px;
+  margin-bottom: -5%;
 }
 
 .checkbox {
@@ -67,13 +67,30 @@ html {
 }
 
 #texto {
-  flex: 0.65;
+  flex: 0.45;
   height: 35px;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 #messi {
   position: absolute;
   top: 50%;
   left: -10%;
+}
+
+.eliminar {
+  height: 40px;
+  width: 40px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.72) 0px 1px 3px, rgba(0, 0, 0, 0.74) 0px 2px 3px;
+  border-radius: 7px;
+  background-color: red;
+  color: white;
+  font-weight: bolder;
+  font-size: 15px;
+  flex: 1;
+}
+
+.eliminar:hover {
+  background-color: rgba(0, 255, 255, 0.7);
 }
