@@ -1,4 +1,4 @@
-const tareas = document.getElementById("tareas");
+const tareas = document.getElementById("lista");
 var arrayTareas = [];
 
 function agregar() {
@@ -11,39 +11,45 @@ function agregar() {
     check: false,
   };
 
-  //vacia lista
+  //vaciar lista y input
   tareas.innerHTML = "";
+  texto.value = "";
 
   //agrega elemento a array
   arrayTareas.push(tarea);
-  
+
   arrayTareas.map((t) => {
     if (t.check == true) {
       tareas.innerHTML += `
-        <li>
-            <input type="checkbox" class="tarea" id=${t.id} checked> <h5 id=${t.texto}> ${t.texto} </h5> 
+        <li class="tarea">
+            <input type="checkbox" class="checkbox" id=${t.id} checked> <h5 id=${t.texto}> ${t.texto} </h5> 
         </li>
       `;
       document.getElementById(t.texto).style = "text-decoration:line-through;";
+      arrayTareas[t.id].check = true;
     } else {
       tareas.innerHTML += `
-        <li>
-            <input type="checkbox" class="tarea" id=${t.id}> <h5 id=${t.texto}> ${t.texto} </h5> 
+        <li class="tarea">
+            <input type="checkbox" class="checkbox" id=${t.id}> <h5 id=${t.texto}> ${t.texto} </h5> 
         </li>
       `;
+      document.getElementById(t.texto).style = "text-decoration:none;";
+      arrayTareas[t.id].check = false;
     }
-    
-    let checkbox = document.getElementById(tarea.id);
+  });
+
+
+  arrayTareas.map(t => {
+    const checkbox = document.getElementById(t.id);
+    console.log(t.id);
     checkbox.addEventListener("change", (e) => {
       if (e.target.checked) {
-        document.getElementById(tarea.texto).style =
-          "text-decoration:line-through;";
-        arrayTareas[tarea.id].check = true;
-
+        document.getElementById(t.texto).style = "text-decoration:line-through;";
+        arrayTareas[t.id].check = true;
       } else {
-        document.getElementById(tarea.texto).style = "text-decoration:none;";
+        document.getElementById(t.texto).style = "text-decoration:none;";
+        arrayTareas[t.id].check = false;
       }
     });
   });
-
 }

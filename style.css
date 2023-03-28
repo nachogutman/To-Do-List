@@ -1,34 +1,79 @@
-*{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-html{
-    background-image: url(imgs/fondo.jpg);
+html {
+  background-image: url(imgs/fondo.jpg);
 }
 
-#titulo{
-    text-align: center;
-    color: aliceblue;
-
+#titulo {
+  text-align: center;
+  color: aliceblue;
+  font-size: 50px;
 }
 
-.tarea{
-    display: flex;
-    margin: auto;
-    color: aliceblue;
+#lista {
+  list-style: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 20px;
 }
 
-.contenedor{
-    display: block;
-    padding: 2%;
-    width: 50%;
-    height: 70%;
-    margin: auto;
-    align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-    border-radius: 20px;
+.tarea {
+  display: flex;
+  color: aliceblue;
+  font-size: 30px;
+  margin-bottom: -10%;
 }
 
-.tachado{
-    text-decoration:line-through;
+.checkbox {
+  width: 20px;
+}
+
+.contenedor {
+  display: block;
+  padding: 2%;
+  width: 30%;
+  height: 70%;
+  margin: auto;
+  margin-top: 2%;
+}
+
+.tachado {
+  text-decoration: line-through;
+}
+
+.contenedor-agregar {
+  display: flex;
+  gap: 10px;
+  width: 80%;
+  margin: auto;
+}
+
+.boton {
+  height: 40px;
+  width: 40px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.72) 0px 1px 3px, rgba(0, 0, 0, 0.74) 0px 2px 3px;
+  border-radius: 7px;
+  background-color: aqua;
+  color: blueviolet;
+  font-weight: bolder;
+  font-size: 15px;
+  flex: 0.35;
+}
+
+.boton:hover {
+  background-color: rgba(0, 255, 255, 0.7);
+}
+
+#texto {
+  flex: 0.65;
+  height: 35px;
+  font-size: 25px;
+}
+
+#messi {
+  position: absolute;
+  top: 50%;
+  left: -10%;
 }
