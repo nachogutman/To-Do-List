@@ -98,7 +98,7 @@ function rapida() {
   textoMenor = "";
   arrayTareas.map((t) => {
     if (t.fechaTachado) {
-      let dif = (t.fechaTachado / 1000) - (t.fechaCreacion / 1000);
+      let dif = t.fechaTachado / 1000 - t.fechaCreacion / 1000;
       console.log(dif);
       if (dif < fechaMenor) {
         fechaMenor = dif;
@@ -107,7 +107,11 @@ function rapida() {
     }
   });
 
-  alert(
-    `El ganador de la copa piston fue: ${textoMenor} con un tiempo de ${fechaMenor} segundos`
-  );
+  if (fechaMenor == 999999999999) {
+    alert("No termino nadie");
+  } else {
+    alert(
+      `El ganador de la copa piston fue: ${textoMenor} con un tiempo de ${fechaMenor} segundos`
+    );
+  }
 }
