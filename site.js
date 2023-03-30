@@ -10,10 +10,10 @@ function agregar() {
     const tarea = {
       id: arrayTareas.length,
       texto: texto.value,
-      fechaCreacion: new Date().toISOString(),
+      fechaCreacion: new Date(),
       check: false,
       fechaTachado: null,
-      velocidad: null
+      velocidad: null,
     };
 
     //vaciar lista y input
@@ -26,10 +26,13 @@ function agregar() {
     //vuelve a cargar la lista al html
     arrayTareas.map((t) => {
       if (t.check == true) {
-        arrayTareas[t.id].fechaTachado = new Date().toISOString();
         tareas.innerHTML += `
         <li class="tarea">
-            <input type="checkbox" class="checkbox" id=${t.id} checked> <h5 id="check${t.id}"> ${t.texto} Fecha de Creacion: ${t.fechaCreacion} Fecha de Finalizacion: ${t.fechaTachado}</h5> 
+            <input type="checkbox" class="checkbox" id=${
+              t.id
+            } checked> <h5 id="check${t.id}"> ${
+          t.texto
+        } (${t.fechaCreacion.toISOString()} / ${t.fechaTachado.toISOString()}) </h5> 
         </li>
       `;
         document.getElementById("check" + t.id).style =
@@ -38,7 +41,9 @@ function agregar() {
       } else {
         tareas.innerHTML += `
         <li class="tarea">
-            <input type="checkbox" class="checkbox" id=${t.id}> <h5 id="check${t.id}"> ${t.texto} Fecha de Creacion: ${t.fechaCreacion} </h5> 
+            <input type="checkbox" class="checkbox" id=${t.id}> <h5 id="check${
+          t.id
+        }"> ${t.texto} (${t.fechaCreacion.toISOString()}) </h5> 
         </li>
       `;
         console.log(t.texto);
@@ -49,6 +54,7 @@ function agregar() {
 
     tareas.innerHTML += `
       <button onclick="rapida()" class="velocidad"> Mas Veloz </button>
+      <img src="imgs/cars.png" id="rayo">
     `;
 
     //agrega el eventlistener a cada checkbox
@@ -60,18 +66,20 @@ function agregar() {
           document.getElementById("check" + t.id).style =
             "text-decoration:line-through;";
 
-          t.fechaTachado = new Date().toISOString();
+          t.fechaTachado = new Date();
 
-          document.getElementById(
-            "check" + t.id
-          ).innerHTML += `Fecha de Finalizacion: ${t.fechaTachado}`;
-
-          arrayTareas[t.id].velocidad = t.fechaCreacion - t.fechaTachado;
+          document.getElementById("check" + t.id).innerHTML = `${
+            t.texto
+          } (${t.fechaCreacion.toISOString()} / ${t.fechaTachado.toISOString()})`;
 
           arrayTareas[t.id].check = true;
         } else {
           document.getElementById("check" + t.id).style =
             "text-decoration:none;";
+
+          document.getElementById("check" + t.id).innerHTML = `${
+            t.texto
+          } (${t.fechaCreacion.toISOString()})`;
 
           arrayTareas[t.id].check = false;
         }
@@ -85,10 +93,21 @@ function eliminar() {
   arrayTareas = [];
 }
 
-function rapida(){
+function rapida() {
   fechaMenor = 999999999999;
-  nombreMenor = "";
-  arrayTareas.map(t => {
-    
+  textoMenor = "";
+  arrayTareas.map((t) => {
+    if (t.fechaTachado) {
+      let dif = (t.fechaTachado / 1000) - (t.fechaCreacion / 1000);
+      console.log(dif);
+      if (dif < fechaMenor) {
+        fechaMenor = dif;
+        textoMenor = t.texto;
+      }
+    }
   });
+
+  alert(
+    `El ganador de la copa piston fue: ${textoMenor} con un tiempo de ${fechaMenor} segundos`
+  );
 }
